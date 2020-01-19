@@ -59,6 +59,7 @@ content_type = {'.jpg': 'image/jpeg', '.png': 'image/png', '.gif': 'image/gif',
                 'none': 'application/octet-stream'}
 
 last_post_id = 22902566
+thread_id = '22836381'
 
 def random_string(size=20, chars=string.ascii_letters + string.digits):
     """生成随机20个字母+数字组合"""
@@ -518,7 +519,7 @@ def Roller():
 
         # 获取某串的第一页内容
 
-        thread = adao.show_thread('22836381', page=1)
+        thread = adao.show_thread(thread_id, page=1)
         page_num = math.ceil(int(thread['replyCount'])/19)
 #        pprint(thread)
 
@@ -541,7 +542,7 @@ def Roller():
             if maxPoint:
                 reply = '>>No.' + postid + '\n' + userid + ' 骰出了' + str(random.randint(0,maxPoint - 1)) + '点'
                 title = postid + '串的骰子结果'
-                if adao.reply_thread('22836381',reply,'骰娘','',title=title):
+                if adao.reply_thread(thread_id,reply,'骰娘','',title=title):
                     pprint("回复串"+ postid)
                 time.sleep(11)
         last_post_id = int(last_posts[-1]['id'])
